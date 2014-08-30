@@ -19,7 +19,7 @@ development:
   encoding: unicode
   database: screener_development
   pool: 5
-  username: screener
+  username: pooya
   password:
 
   # Connect on a TCP socket. Omitted by default since the client uses a
@@ -48,7 +48,7 @@ test:
   encoding: unicode
   database: screener_test
   pool: 5
-  username: screener
+  username: pooya
   password:
 
 production:
@@ -56,5 +56,5 @@ production:
   encoding: unicode
   database: screener_production
   pool: 5
-  username: screener
+  username: pooya
   password:
