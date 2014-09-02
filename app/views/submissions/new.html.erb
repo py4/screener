@@ -1,0 +1,50 @@
+<%= simple_form_for :submission, url: submissions_path, html: {class: 'form-horizontal', role: 'form', onsubmit: "return validate_form();"} do |f| %>
+<div class="contrainer exam">
+	<script type="text/javascript">
+		function validate_form()
+		{
+			var radioButtons = $('input[type="radio"]');
+			for(i = 0; i < radioButtons.length-1; i += <%= 3 %>) {
+				var check = false;
+				for(j = 0; j < <%= CHOICES.size %>; j++) {
+					if(radioButtons[i+j].checked == true)
+					{
+						check = true;
+						break;
+					}
+
+				}
+				if(check)
+					continue;
+
+				alert("سوال شماره‌ی "+(Math.ceil(i/<%=CHOICES.size %>)+1).toString()+"خالی است. پرش کنید.");
+				return false;
+			}
+			return true;
+		}
+	</script>
+
+	<div class="row">
+		<div class="col-md-3"></div>
+		<div class="col-md-4">
+			<% QUESTIONS.each_with_index do |question,index| %>
+			<p>
+				<fieldset id="question<%=index%>">
+					<legend><b><%= persian_number(index+1) %>. </b><%= question%></legend>
+					<%= f.collection_radio_buttons(
+						"#{index}" ,CHOICES.each_with_index.map { |(choice,value),i| [i,choice]}, :first, :last
+						) do |b|
+						b.label { b.radio_button + b.text}
+					end
+					%>
+				</fieldset>
+			</p>
+			<br>
+			<% end %>
+			<%= f.submit 'ثبت', class: 'btn btn-success' %>
+		</div>
+		<div class="col-md-4"></div>
+	</div>
+</div>
+
+<% end %>

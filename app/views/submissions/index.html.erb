@@ -1,0 +1,50 @@
+<div class="management with-font text-center" id="new">
+	لیست تست‌های ثبت شده‌ی شما.
+</div>
+
+<div class="container with-margin">
+	<div class="row">
+		<% if @submissions.any? %>
+		<div class="col-md-10 col-md-offset-1">
+			<table class="table table-stripped">
+				<thead>
+					<tr>
+						<th> تاریخ ثبت </th>
+						<th> نظر سیستم </th>
+						<th> نظر پزشک </th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @submissions.each do |submission| %>
+					<tr>
+						<td> <%= persian_date(submission.created_at) %> </td>
+						<td>
+							<% if submission.classifier_result%>
+								احتمال زیاد مبتلا هست.
+							<% elsif submission.classifier_result == false %>
+								احتمال زیاد مبتلا نیست.
+							<% else %>
+								منتظر باشید.
+							<% end %>
+						</td>
+						<td>
+							<% if submission.classifier_result%>
+								مبتلا هست.
+							<% elsif submission.classifier_result == false %>
+								مبتلا نیست.
+							<% else %>
+								منتظر باشید.
+							<% end %>
+						</td>
+					</tr>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+		<% else %>
+		<% end %>
+	</div>
+	<div class="row with-font text-center with-margin">
+			<%= link_to 'تست جدید', new_submission_path, class: "btn btn-success" %>
+	</div>
+</div>

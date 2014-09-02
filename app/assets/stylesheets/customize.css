@@ -255,3 +255,7 @@ a:hover { text-decoration:none; }
 span.with-font {
     padding-left: 5px;
 }
+.navbar-default .navbar-brand {
+    color: white;
+}
+
