@@ -1,0 +1,17 @@
+<% QUESTIONS.each_with_index do |question,i| %>
+	<div class="row">
+		<div class="col-md-5">
+		</div>
+		<div class="col-md-3">
+			<b><%= question %></b>
+			<%= CHOICES.keys[@answers[i].choice] %>
+			<br><br><br>
+		</div>
+		<div class="col-md-4">
+ 		</div>
+	</div>
+<% end %>
+<br><br>
+<center>
+<%= link_to 'بازگشت', expert_path, class: 'btn btn-info' %>
+</center>
